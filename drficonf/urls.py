@@ -3,12 +3,10 @@ from django.urls import path, include
 from wom.views import *
 from rest_framework import routers
 
-router = routers.DefaultRouter()
-router.register(r'wom', WomenViewSet, basename='wom')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/v1/wom_list/', WomenViewSet.as_view({'get': 'list'})),
-    # path('api/v1/wom_list/<int:pk>/', WomenViewSet.as_view({'put': 'update'})),
-    path('api/v1/', include(router.urls)),
+    path('api/v1/wom/', WomenAPIList.as_view()),
+    path('api/v1/wom/<int:pk>/', WomenAPIUpdate.as_view()),
+    path('api/v1/wom_delete/<int:pk>/', WomenAPIDestroy.as_view()),
 ]

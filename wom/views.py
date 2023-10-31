@@ -11,6 +11,13 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
 from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.pagination import PageNumberPagination
+
+
+class WomenAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
 
 
 class WomenAPIList(generics.ListCreateAPIView):
